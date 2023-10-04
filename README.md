@@ -2,7 +2,7 @@
 
 This python code is used to create users in a Nextcloud via batch operation.
 
-It maintains additionally a local user DB, which allows a quick survey [D
+For a quick survey it maintains additionally a local user DB.
 
 ## Usage:
 
