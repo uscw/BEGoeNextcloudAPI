@@ -41,7 +41,7 @@ USER_FAREWELL_FILE = BEGOE_DIR + 'user_farewell.txt'
 BEGOE_LOGO_FILE =  BEGOE_DIR + '/pictures/BEG_Logo_weiss.webp'
 
 PASSWORD_LG = 10
-SEND_USER_MSG = False
+SEND_USER_MSG = True
 
 #########################        
 
@@ -439,8 +439,9 @@ class Nextcloud_Environment():
         print ("edit_user:       email",user_resp.status_code, user_resp.data)
         # user_resp = self.nxc.edit_user(user_content["Userid"],"manager",self.nxc.user)
         # print (user_resp, user_resp.data)
-        user_resp = self.nxc.add_to_group(user_content["Userid"],user_content["Gruppen"])
-        print ("add_to_group          ",user_resp.status_code, user_resp.data)
+        for group in user_content["Gruppen"]:
+            user_resp = self.nxc.add_to_group(user_content["Userid"],group)
+            print ("add_to_group " + group,user_resp.status_code, user_resp.data)
         # user_resp = self.nxc.resend_welcome_mail(user_content["Userid"])
         # print ("resend_welcome_mail",user_resp.status_code, user_resp.data)
         user_resp = self.nxc.get_user(user_content["Userid"])
